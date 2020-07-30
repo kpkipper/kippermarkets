@@ -2,22 +2,21 @@
   <div>
        <v-container fluid>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="9">
         <v-row
           :align="alignment"
           :justify="justify"
           class="grey lighten-5"
           style="height: 300px;"
         >
-        <Menu
-        class="ma-3 pa-6"
-            v-for = "menu in menus" 
-            :key = menu
+          <Menu
+            v-for = "menu in menus"
+            :key = menu 
+            class="ma-3 pa-6"
             :img = menu.img
             :title = menu.title
             :price= menu.price
         ></Menu>
-
         </v-row>
       </v-col>
     </v-row>
@@ -26,6 +25,7 @@
 </template>
 <script>
 import Menu from "./Menu.vue";
+import axios from "axios";
 export default {
   name: "Home",
   components: {
@@ -54,7 +54,22 @@ export default {
                 price:"0.25 THB"
           }]
       }
-  }
+    },
+      created() {
+        axios.get('http://localhost:3000/api/').then(resp=>{
+          console.log(resp.data);
+          this.menus = resp.data.map(eboom=>{
+            const {name, price} = eboom;
+            return {
+              title: name,
+              price: price,
+              img: "https://pbs.twimg.com/profile_images/488631918573801472/oYpt2NDe.jpeg"
+            }
+          })
+        }).catch(err=>{
+          console.log(err);
+        })
+      }
 };
 </script>
 

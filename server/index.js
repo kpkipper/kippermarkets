@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var cors = require('cors');
 const port = process.env.port || 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,6 +10,7 @@ const api = require('./routes');
 
 app.use(bodyParser.json());
 
+app.use(cors());
 app.use('/api',api);
 
 mongoose.connect(db.url).then(()=>{

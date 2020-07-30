@@ -1,9 +1,9 @@
 <template>
 <div>
     <v-card
-    class="mx-auto"
-    max-width="344"
-  >
+      class="mx-auto"
+      max-width="344"
+    >
     <v-img
       :src="img"
       height="200px"

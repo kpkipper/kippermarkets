@@ -99,9 +99,9 @@ router.get('/',(req,res)=>{
                 'error':err
             })
         } else {
-            res.status(200).json({
-                data: data
-            })
+            res.status(200).json(
+                data
+            )
         }
     })
 })
